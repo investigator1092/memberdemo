@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="_temp :: header ('ACTOR')">
+</head>
+
+<body class="bg-dark">
+
+    <div class="container">
+        <div class="page-header">
+            <h1 th:utext="'<i class=&quot;far fa-user&quot;></i>' + #{actor.index.title}" class="bg-dark text-white text-center">actor.index.title</h1>
+            <p th:if="${emptyMessage}" th:text="${emptyMessage}">empty message</p>
+            <p th:if="${errorMessage}" th:text="${errorMessage}">error message</p>
+            <p th:if="${deleteMessage}" th:text="${deleteMessage}">delete message</p>
+        </div>
+
+        <div th:replace="_temp :: nav"></div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <form action="/actor/search" th:action="@{/actor/search}" method="get">
+                    <div class="input-group">
+                        <input type="text" name="keyword" class="form-control" placeholder="Search for..." />
+                        <span class="input-group-btn">
+                            <input class="btn border text-white" type="submit" value="Search!" />
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <table class="table text-white">
+                    <thead>
+                        <tr>
+                            <th th:utext="#{actor.id}">id</th>
+                            <th th:utext="#{actor.name}">name</th>
+                            <th th:utext="#{actor.height}">height</th>
+                            <th th:utext="#{actor.blood}">blood</th>
+                            <th th:utext="#{actor.birthday}">birthday</th>
+                            <th th:utext="#{actor.birthplace}">birthplace</th>
+                            <th th:utext="#{actor.update_at}">update_at</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="row, itemStat : ${rows}">
+                            <td>
+                                <a class="btn btn-info text-white" href="/actor/${row.id}"
+                                    th:href="@{/actor/{id}(id=${row.id})}" th:text="${row.id}">1</a>
+                            </td>
+                            <td th:text="${row.name}">1</td>
+                            <td th:text="${row.height != null}? ${row.height} : '-'">1</td>
+                            <td th:text="${row.blood != null}? ${row.blood} : '-'">1</td>
+                            <td th:text="${row.birthday != null}? ${#dates.format(row.birthday,'yyyy-MM-dd')} : '-'">1</td>
+              <td th:text="(${row.birthplaceId != null}? ${row.birthplaceId} + ':' : '') + (${row.pref != null }? ${row.pref.name} : '(unknown)')"></td>
+              <td th:text="${row.updateAt}">1</td>
+              <td>
+                <a class="btn btn-warning" href="/actor/delete/${row.id}" th:href="@{/actor/delete/{id}(id=${row.id})}">delete</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div th:replace="_temp :: footer"></div>
+  </div>
+
+  <div th:insert="_temp :: script"></div>
+</body>
+</html>
