@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999//xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="header (title)">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title th:text="${title}">title</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="\css\create.css">
+  <script src="https://kit.fontawesome.com/7af20cb0ee.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div th:fragment="nav" class="row">
+      <div class="col-md-12 mb-3">
+        <ul class="nav justify-content-around">
+          <li role="presentation"><a href="/actor" th:href="@{/actor}" th:utext="#{actor.nav.index}"
+              class="text-white btn-sm btn btn-outline-secondary">index</a></li>
+          <li role="presentation"><a href="/actor/create" th:href="@{/actor/create}" th:utext="#{actor.nav.create}"
+              class="text-white btn-sm btn btn-outline-secondary">create</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div th:fragment="footer" class="page-header text-white">
+    <div th:utext="#{footer.text}">original footer</div>
+  </div>
+
+  <div th:fragment="script">
+    <script src="/vendor/jquery/jquery-1.11.3.js" th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
+  </div>
+
+</body>
+
+</html>
