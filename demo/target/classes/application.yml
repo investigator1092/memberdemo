@@ -1,0 +1,25 @@
+# EMBEDDED SERVER CONFIGURATION (ServerProperties)
+server:
+  port: 8080
+
+spring:
+# THYMELEAF (ThymeleafAutoConfiguration)
+  thymeleaf:
+    enabled: true
+    cache: false
+# DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+  datasource:
+    driverClassName: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/sample_db_spring
+    username: iam
+    password: 4749
+# JPA (JpaBaseConfiguration, HibernateJpaAutoConfiguration)
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+# INTERNATIONALIZATION (MessageSourceAutoConfiguration)
+  messages:
+    basename: messages
+    encoding: UTF-8

@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="_temp :: header ('ACTOR CREATE')">
+</head>
+
+<body class="bg-dark text-white">
+
+  <div class="container">
+    <div class="page-header">
+      <h1 th:utext="#{actor.create.title}" class="text-center">actor.create.title</h1>
+    </div>
+
+    <div th:replace="_temp :: nav"></div>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <form role="form" action="/actor/save" th:action="@{/actor/save}" th:object="${actorForm}"
+          method="post">
+          <!-- name -->
+          <div class="form-group">
+            <label for="id_name" class="col-sm-2 control-label" th:utext="#{actor.name}">name</label>
+            <div class="col-sm-12">
+              <input id="id_name" class="form-control" type="text" name="name" th:field="*{name}"
+                th:placeholder="#{actor.create.name}" />
+              <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="help-block">error!</span>
+            </div>
+          </div>
+          <!-- height -->
+          <div class="form-group">
+            <label for="id_height" class="col-sm-2 control-label" th:utext="#{actor.height}">height</label>
+            <div class="col-sm-12">
+              <input id="id_height" class="form-control" type="number" name="height" th:field="*{height}" th:placeholder="#{actor.create.height}" />
+              <span th:if="${#fields.hasErrors('height')}" th:errors="*{height}" class="help-block">error!</span>
+            </div>
+          </div>
+          <!-- blood -->
+          <div class="form-group">
+            <label for="id_blood" class="col-sm-2 control-label" th:utext="#{actor.blood}">blood</label>
+            <div class="col-sm-12">
+              <input id="id_blood" class="form-control" type="text" name="blood" th:field="*{blood}" th:placeholder="#{actor.create.blood}"/>
+              <span th:if="${#fields.hasErrors('blood')}" th:errors="*{blood}" class="help-block">error!</span>
+            </div>
+          </div>
+          <!-- birthday -->
+          <div class="form-group">
+            <label for="id_birthday" class="col-sm-2 control-label" th:utext="#{actor.birthday}">birthday</label>
+            <div class="col-sm-12">
+              <input id="id_birthday" class="form-control" type="text" name="birthday" th:field="*{birthday}" th:placeholder="#{actor.create.birthday}"/>
+              <span th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" class="help-block">error!</span>
+            </div>
+          </div>
+          <!-- birthplaceId -->
+          <div class="form-group">
+            <label for="id_birthplaceId" class="col-sm-2 control-label" th:utext="#{actor.birthplace}">birthplace</label>
+            <div class="col-sm-12">
+              <select id="id_birthplaceId" class="form-control" name="birthplaceId">
+                <option value="">---</option>
+                <option th:each="item : ${pref}" th:value="${item.id}" th:text="${item.name}" th:selected="${item.id} == *{birthplaceId}">pulldown</option>
+              </select>
+              <span th:if="${#fields.hasErrors('birthplaceId')}" th:errors="*{birthplaceId}" class="help-block">error!</span>
+            </div>
+          </div>
+
+          <div class="form-group text-center">
+            <input class="btn btn-light " type="submit" value="save" />
+          </div>
+        </div>
+        </form>
+    </div>
+
+    <div th:replace="_temp :: footer"></div>
+  </div>
+
+  <!-- <div th:insert="_temp :: script"></div> -->
+</body>
+</html>
