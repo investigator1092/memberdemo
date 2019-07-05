@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_temp :: header ('ERROR')">
+</head>
+<body class="bg-dark text-white">
+
+  <div class="container">
+    <div class="page-header">
+      <h1 th:utext="'<i class=&quot;fas fa-exclamation-triangle&quot;></i>' + '#{error.404}'">error</h1>
+    </div>
+    <div th:replace="_temp :: footer"></div>
+  </div>
+ 
+  <div th:insert="_temp :: script"></div>
+</body>
+</html>
