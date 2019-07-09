@@ -1,0 +1,26 @@
+﻿---jawsdb_maria_url----
+mysql://zik0euu9a34lrf3t:t89d313gl4cxtxl9@if0ck476y7axojpg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ioznpog6xrm1gn2t
+
+---様式---
+mysql://username:password@hostname:port/default_schema
+
+---mysqlのインポートするためのコマンド---
+mysql -h NEWHOST -u NEWUSER -pNEWPASS NEWDATABASE < backup.sql
+
+---作る---
+mysql -h if0ck476y7axojpg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com -u zik0euu9a34lrf3t -p t89d313gl4cxtxl9 sample_db_spring < dump-sample_db_spring.sql
+
+---作るver.2---
+mysql -h if0ck476y7axojpg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306 -u zik0euu9a34lrf3t -p t89d313gl4cxtxl9 ioznpog6xrm1gn2t < dump-sample_db_spring.sql
+
+
+---username---
+zik0euu9a34lrf3t
+---password---
+t89d313gl4cxtxl9
+---hostname:port---
+if0ck476y7axojpg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306
+---defult_schema(db名)---
+ioznpog6xrm1gn2t
+
+mysql --host=if0ck476y7axojpg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com --user=zik0euu9a34lrf3t --password=t89d313gl4cxtxl9 --reconnect ioznpog6xrm1gn2t < dump-sample_db_spring.sql
