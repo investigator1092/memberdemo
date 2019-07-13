@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import lombok.Getter;
@@ -31,7 +32,8 @@ public class ActorForm implements Serializable {
     private String height;
     @Pattern(regexp="A|B|AB|O", message="{actor.validation.blood}")
     private String blood;
-    @Pattern(regexp="(\\d{4}/\\d{2}/\\d{2})", message="{actor.validation.birthday}")
+    //@Pattern(regexp="(\\d{4}/\\d{2}/\\d{2})", message="{actor.validation.birthday}")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private String birthday;
     @NotNull(message=ACTOR_VALIDATION_NOT_NULL)
     @Min(value=1, message="actor.validation.not.default")
