@@ -34,7 +34,7 @@
           </tr>
           <tr>
             <th th:utext="#{actor.birthday}">birthday</th>
-            <td th:text="*{birthday != null}? *{#dates.format(birthday,'yyyy-MM-dd')} : '-'"></td>
+            <td th:text="*{birthday != null}? *{#dates.format(birthday,'yyyy/MM/dd')} : '-'"></td>
           </tr>
           <tr>
             <th th:utext="#{actor.birthplace}">birthplace</th>

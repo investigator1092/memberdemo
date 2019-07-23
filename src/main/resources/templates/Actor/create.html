@@ -62,6 +62,11 @@
               <span th:if="${#fields.hasErrors('birthplaceId')}" th:errors="*{birthplaceId}" class="help-block">error!</span>
             </div>
           </div>
+          <!-- <ul>
+            <li th:each="error: ${#fields.detailedErrors()}">
+              <span th:text="${error.message}">Error message</span>
+            </li>
+          </ul> -->
 
           <div class="form-group text-center">
             <input class="btn btn-light " type="submit" value="save" />

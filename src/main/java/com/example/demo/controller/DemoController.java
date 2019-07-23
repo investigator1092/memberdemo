@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -27,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.time.format.DateTimeFormatter;
 
 import com.example.demo.form.ActorForm;
 import com.example.demo.repository.Actor;
@@ -64,9 +64,7 @@ public class DemoController {
 
   @GetMapping("/actor/{id}")
   public ModelAndView detail(@PathVariable Integer id, ModelAndView mv) {
-    // ModelAndView mv = new ModelAndView();
     mv.setViewName("Actor/detail");
-    // ここOptionalに変えた
     Optional<Actor> actor = actorRepository.findById(id);
     mv.addObject("actor", actor.orElse(null));
     return mv;
@@ -107,7 +105,6 @@ public class DemoController {
 
   @GetMapping("/actor/delete/{id}")
   public String delete(@PathVariable Integer id, RedirectAttributes attributes, Model model) {
-    // ここdeleteから変えた
     actorRepository.deleteById(id);
     attributes.addFlashAttribute("deleteMessage", "delete ID:" + id);
     return "redirect:/actor";
@@ -125,8 +122,8 @@ public class DemoController {
     if (StringUtils.isNotEmpty(form.getBlood())) {
       actor.setBlood(form.getBlood());
     }
-    if (StringUtils.isNotEmpty(form.getBirthday())) {
-      DateTimeFormatter withoutZone = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    if (null != form.getBirthday()) {
+      DateTimeFormatter withoutZone = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
       LocalDateTime parsed = LocalDateTime.parse(form.getBirthday() + " 00:00:00", withoutZone);
       Instant instant = parsed.toInstant(ZoneOffset.ofHours(9));
       actor.setBirthday(Date.from(instant));

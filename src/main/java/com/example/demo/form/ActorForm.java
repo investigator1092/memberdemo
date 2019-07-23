@@ -1,6 +1,8 @@
 package com.example.demo.form;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -33,8 +35,8 @@ public class ActorForm implements Serializable {
     @Pattern(regexp="A|B|AB|O", message="{actor.validation.blood}")
     private String blood;
     //@Pattern(regexp="(\\d{4}/\\d{2}/\\d{2})", message="{actor.validation.birthday}")
-    @DateTimeFormat(pattern = "yyyy/M/d")
-    private String birthday;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthday;
     @NotNull(message=ACTOR_VALIDATION_NOT_NULL)
     @Min(value=1, message="actor.validation.not.default")
     @Max(48)
